@@ -1,6 +1,6 @@
 import { useState  , useEffect} from "react"
 
-function GetPhotosPage(){
+function GetAllPhotosPage(){
     
     const [parsedRes ,changeParsedRes ] = useState([])
 
@@ -8,7 +8,7 @@ function GetPhotosPage(){
 
         async function asyncThisPls(){
             const token = window.localStorage.getItem("token")
-            const res = await fetch('http://localhost:3000/getPhotos' , {
+            const res = await fetch('http://localhost:3000/getAllPhotos' , {
                 headers:{
                     "Content-Type" : "application/json"
                 },
@@ -31,7 +31,7 @@ function GetPhotosPage(){
    
     return(
         <>
-        <h1>get photos</h1>
+        <h1>get all photos</h1>
         <a href="/uploadPhoto">upload photos</a>
             {parsedRes.length != 0 ? (
         parsedRes.map((element) => (
@@ -45,4 +45,4 @@ function GetPhotosPage(){
     )
 }
 
-export {GetPhotosPage}
+export {GetAllPhotosPage}

@@ -26,8 +26,8 @@ function UploadPhotoPage(){
         changeIsPhotoUploaded("")
 
         const formData = new FormData();
-
-        formData.append("userName", value.userName);
+        const token = window.localStorage.getItem("token")
+        formData.append("token", token );
         if (value.image) {
             formData.append("profileImg", value.image);
           }
@@ -52,10 +52,10 @@ function UploadPhotoPage(){
     return(
         <>
         <h1>Upload photos</h1>
-        
+        <a href="/getPhotos">gallery</a>
         <form onSubmit={formSubmitted}>
-            <input type="text" name="userName" onChange={handelInputChange}/>
-            <input type="file" name="image" onChange={handelInputChange}/>
+
+            <input type="file" name="image" onChange={handelInputChange} required/>
 
             <button >send</button>
 

@@ -13,7 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Photos{
-  photoName String @id()
+enum UserRole {
+  STANDARD
+  ADMIN
+}
+
+model Photos {
+  photoName String @id
+  userId    String
+  user      User   @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id       String   @id @default(uuid())
   userName String
+  email    String
+  password String
+  userRole UserRole @default(STANDARD)
+  photos   Photos[]
 }
